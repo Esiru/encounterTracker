@@ -4,20 +4,43 @@ on:
     branches:
       - main
 jobs:
-  build:
+  deploy:
 
     runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v3
-    - name: All things angular
-      uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.4.0 
-      with:
-        github_access_token: ${{ secrets.GITHUB_TOKEN }} # see the Configuration section for how you can create secrets
-        # build_configuration: build # The build environment for the app. please look configurations in your angular.json
-        base_href: /encounterTracker/   # make sure this corresponds to https://<your_username>.github.io/<base_href>/
-        deploy_branch: gh-pages # The branch the action should deploy to.
-        angular_dist_build_folder: dist/encounterTracker/browser # The folder where your project is supposed to be after running ng build by the action.
+    permissions:
+      contents: write
 
-permissions:
-  contents: write # Allow write permission to GITHUB_TOKEN to commit to deploy branch.
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      
+      - name: Install dependencies
+        run: npm run test
+
+      - name: Build Angular app
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/angular-app/browser
+    # steps:
+    # - uses: actions/checkout@v3
+    # - name: All things angular
+    #   uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.4.0 
+    #   with:
+    #     github_access_token: ${{ secrets.GITHUB_TOKEN }} # see the Configuration section for how you can create secrets
+    #     # build_configuration: build # The build environment for the app. please look configurations in your angular.json
+    #     base_href: /encounterTracker/   # make sure this corresponds to https://<your_username>.github.io/<base_href>/
+    #     deploy_branch: gh-pages # The branch the action should deploy to.
+    #     angular_dist_build_folder: dist/encounterTracker/ # The folder where your project is supposed to be after running ng build by the action.
+
+# permissions:
+  # contents: write # Allow write permission to GITHUB_TOKEN to commit to deploy branch.

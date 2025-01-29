@@ -6,8 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:encounterTracker": "node dist/encounter-tracker/server/server.mjs"
+    "test": "ng test --source-map=false --browsers=ChromeHeadless --watch=false",
+    "serve:ssr:encounterTracker": "node dist/encounter-tracker/server/server.mjs",
+    "prepare": "husky"
   },
   "private": true,
   "dependencies": {
@@ -38,6 +39,7 @@
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.3",
     "globals": "^15.14.0",
+    "husky": "^9.1.7",
     "jasmine-core": "~5.5.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",

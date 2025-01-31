@@ -6,7 +6,7 @@ import tseslint from "typescript-eslint";
 export default [
   {
     files: ["**/*.{js,mjs,cjs,ts}"],
-    rules: { quotes: ["error", "double"], noConsole: "error" },
+    rules: { quotes: ["error", "double"], "no-console": "error" },
   },
   { languageOptions: { globals: globals.node } },
   pluginJs.configs.recommended,

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  keycloakClientId: "https://esiru.github.io/encounterTracker/",
+  keycloakClientId: "encounterTrackerDeployment",
 };

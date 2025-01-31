@@ -1,7 +1,7 @@
 import { ApplicationConfig, provideZoneChangeDetection } from "@angular/core";
 import { provideRouter } from "@angular/router";
 import { provideKeycloak } from "keycloak-angular";
-import { environment } from "../environments/environment.development";
+import { environment } from "../environments/environment";
 
 import { routes } from "./app.routes";
 
